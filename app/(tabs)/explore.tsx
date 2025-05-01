@@ -1,109 +1,146 @@
-import { StyleSheet, Image, Platform } from 'react-native';
+import { Image, ScrollView, StyleSheet, TextInput, useWindowDimensions, View } from "react-native";
+import { Link, useRouter } from "expo-router";
+import Screen from "@/components/Screen";
+import { bestForYou, categories, challenges, todayPlans, user, warmUps, workoutPlans, workouts } from "@/data";
+import Colors from "@/constants/Colors";
+import Font from "@/constants/Font";
+import FontSize from "@/constants/FontSize";
+import AppText from "@/components/AppText";
+import Spacing from "@/constants/Spacing";
+import { LinearGradient } from "expo-linear-gradient";
+import { Ionicons } from "@expo/vector-icons";
+import SectionHeader from "@/components/SectionHeader";
+import BestForYou from "@/components/explore/BestForYou";
+import ChallengeCard from "@/components/explore/ChallengeCard";
 
-import { Collapsible } from '@/components/Collapsible';
-import { ExternalLink } from '@/components/ExternalLink';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-import { IconSymbol } from '@/components/ui/IconSymbol';
+const Explore = () => {
+  const dynamicWidth = useWindowDimensions().width;
 
-export default function TabTwoScreen() {
+  const evenIndexedBestForYouItems = bestForYou.filter((_, index) => index % 2 === 0);
+  const oddIndexedBestForYouItems = bestForYou.filter((_, index) => index % 2 !== 0);
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
-      headerImage={
-        <IconSymbol
-          size={310}
-          color="#808080"
-          name="chevron.left.forwardslash.chevron.right"
-          style={styles.headerImage}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Explore</ThemedText>
-      </ThemedView>
-      <ThemedText>This app includes example code to help you get started.</ThemedText>
-      <Collapsible title="File-based routing">
-        <ThemedText>
-          This app has two screens:{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/explore.tsx</ThemedText>
-        </ThemedText>
-        <ThemedText>
-          The layout file in <ThemedText type="defaultSemiBold">app/(tabs)/_layout.tsx</ThemedText>{' '}
-          sets up the tab navigator.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/router/introduction">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Android, iOS, and web support">
-        <ThemedText>
-          You can open this project on Android, iOS, and the web. To open the web version, press{' '}
-          <ThemedText type="defaultSemiBold">w</ThemedText> in the terminal running this project.
-        </ThemedText>
-      </Collapsible>
-      <Collapsible title="Images">
-        <ThemedText>
-          For static images, you can use the <ThemedText type="defaultSemiBold">@2x</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">@3x</ThemedText> suffixes to provide files for
-          different screen densities
-        </ThemedText>
-        <Image source={require('@/assets/images/react-logo.png')} style={{ alignSelf: 'center' }} />
-        <ExternalLink href="https://reactnative.dev/docs/images">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Custom fonts">
-        <ThemedText>
-          Open <ThemedText type="defaultSemiBold">app/_layout.tsx</ThemedText> to see how to load{' '}
-          <ThemedText style={{ fontFamily: 'SpaceMono' }}>
-            custom fonts such as this one.
-          </ThemedText>
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/versions/latest/sdk/font">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Light and dark mode components">
-        <ThemedText>
-          This template has light and dark mode support. The{' '}
-          <ThemedText type="defaultSemiBold">useColorScheme()</ThemedText> hook lets you inspect
-          what the user's current color scheme is, and so you can adjust UI colors accordingly.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/develop/user-interface/color-themes/">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Animations">
-        <ThemedText>
-          This template includes an example of an animated component. The{' '}
-          <ThemedText type="defaultSemiBold">components/HelloWave.tsx</ThemedText> component uses
-          the powerful <ThemedText type="defaultSemiBold">react-native-reanimated</ThemedText>{' '}
-          library to create a waving hand animation.
-        </ThemedText>
-        {Platform.select({
-          ios: (
-            <ThemedText>
-              The <ThemedText type="defaultSemiBold">components/ParallaxScrollView.tsx</ThemedText>{' '}
-              component provides a parallax effect for the header image.
-            </ThemedText>
-          ),
-        })}
-      </Collapsible>
-    </ParallaxScrollView>
-  );
-}
+    <Screen>
+      <ScrollView
+        style={{
+          paddingHorizontal: Spacing.padding.base,
+          paddingTop: Spacing.padding.base,
+          paddingBottom: 80,
+          gap: 24,
+        }}
+      >
+        <View
+          style={{
+            position: "relative",
+            width: dynamicWidth - Spacing.padding.base * 2,
+            height: 180,
+            flexDirection: "column",
+            justifyContent: "space-between",
+          }}
+        >
+          <Image
+            source={require("@/assets/images/workouts/home-workout.jpg")}
+            style={{ flex: 1, width: "auto", height: "auto", borderRadius: 20, objectFit: "cover" }}
+          ></Image>
 
-const styles = StyleSheet.create({
-  headerImage: {
-    color: '#808080',
-    bottom: -90,
-    left: -35,
-    position: 'absolute',
-  },
-  titleContainer: {
-    flexDirection: 'row',
-    gap: 8,
-  },
-});
+          <AppText
+            style={{
+              maxWidth: 210,
+              color: "#ffffff",
+              fontSize: 24,
+              fontWeight: 600,
+              position: "absolute",
+              top: "15%",
+              left: "10%",
+              transform: "translate(-10%,-15%)",
+            }}
+          >
+            Best Home Workouts
+          </AppText>
+
+          <View
+            style={{
+              flexDirection: "row",
+              gap: 10,
+              alignItems: "center",
+              cursor: "pointer",
+              position: "absolute",
+              bottom: "10%",
+              left: "7%",
+              transform: "translate(-10%,-10%)",
+            }}
+          >
+            <AppText style={{ color: Colors.green }}>See more</AppText>
+
+            <Ionicons name="chevron-forward" color={Colors.green} />
+          </View>
+        </View>
+
+        <View>
+          <SectionHeader title="Best for you" showSeeAll={false} />
+
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            decelerationRate="fast"
+            pagingEnabled
+            snapToInterval={270 + Spacing.margin.lg}
+            style={{ marginBottom: 20 }}
+          >
+            {evenIndexedBestForYouItems.map((workout, index) => (
+              <BestForYou workout={workout} key={workout.id} />
+            ))}
+          </ScrollView>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            decelerationRate="fast"
+            pagingEnabled
+            snapToInterval={270 + Spacing.margin.lg}
+            style={{ marginBottom: 20 }}
+          >
+            {oddIndexedBestForYouItems.map((workout) => (
+              <BestForYou workout={workout} key={workout.id} />
+            ))}
+          </ScrollView>
+        </View>
+
+        <View>
+          <SectionHeader title="Challenge" showSeeAll={false} />
+
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            decelerationRate="fast"
+            pagingEnabled
+            snapToInterval={110 + Spacing.margin.lg}
+            style={{ marginBottom: 20 }}
+          >
+            {challenges.map((challenge) => (
+              <ChallengeCard challenge={challenge} key={challenge.id} />
+            ))}
+          </ScrollView>
+        </View>
+
+        <View>
+          <SectionHeader title="Fast Warmups" showSeeAll={false} />
+
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            decelerationRate="fast"
+            pagingEnabled
+            snapToInterval={110 + Spacing.margin.lg}
+            style={{ marginBottom: 20 }}
+          >
+            {warmUps.map((warmup) => (
+              <BestForYou workout={warmup} key={warmup.id} />
+            ))}
+          </ScrollView>
+        </View>
+      </ScrollView>
+    </Screen>
+  );
+};
+
+export default Explore;

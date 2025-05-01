@@ -34,6 +34,11 @@
         }
       ]
     ],
+    "splash": {
+      "image": "./assets/images/favicon.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#ADF547"
+    },
     "experiments": {
       "typedRoutes": true
     }
