@@ -36,6 +36,8 @@ const Explore = () => {
             height: 180,
             flexDirection: "column",
             justifyContent: "space-between",
+            backgroundColor: "gray",
+            borderRadius: 20,
           }}
         >
           <Image
@@ -45,7 +47,7 @@ const Explore = () => {
 
           <AppText
             style={{
-              maxWidth: 210,
+              maxWidth: 215,
               color: "#ffffff",
               fontSize: 24,
               fontWeight: 600,
@@ -122,7 +124,11 @@ const Explore = () => {
           </ScrollView>
         </View>
 
-        <View>
+        <View
+          style={{
+            paddingBottom: 80,
+          }}
+        >
           <SectionHeader title="Fast Warmups" showSeeAll={false} />
 
           <ScrollView

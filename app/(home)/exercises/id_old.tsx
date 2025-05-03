@@ -22,7 +22,7 @@ const ExerciseDetails = () => {
   const workout = workouts.filter((el) => el.id === Number(id))[0];
 
   const goBack = () => {
-    router.push("/");
+    router.push("/(tabs)");
   };
 
   return (

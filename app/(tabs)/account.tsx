@@ -29,6 +29,10 @@ export default function Account() {
     router.push("/(home)/profile");
   };
 
+  const goToMap = () => {
+    router.push("/(home)/map");
+  };
+
   const onLogoutClicked = () => {
     setIsModalVisible(true);
   };
@@ -104,9 +108,28 @@ export default function Account() {
             </View>
 
             <Pressable>
-              <Ionicons name="chevron-forward" size={20} color={"white"} />
+              <Ionicons name="chevron-forward" size={20} />
             </Pressable>
           </View>
+
+          <Pressable onPress={goToMap}>
+            <View style={styles.card}>
+              <View style={styles.wrapper}>
+                <View style={styles.iconContainer}>
+                  <Feather name="user" size={30} />
+                </View>
+
+                <View style={styles.titleContainer}>
+                  <AppText style={styles.title}>Map</AppText>
+                  <AppText style={styles.description}>Track your distance</AppText>
+                </View>
+              </View>
+
+              <Pressable onPress={goToProfile}>
+                <Ionicons name="chevron-forward" size={20} />
+              </Pressable>
+            </View>
+          </Pressable>
 
           <Pressable onPress={onLogoutClicked}>
             <View style={styles.card}>

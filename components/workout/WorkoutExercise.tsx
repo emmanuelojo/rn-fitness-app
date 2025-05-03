@@ -16,6 +16,7 @@ const WorkoutExercise = ({ exercise }: Props) => {
     <TouchableOpacity
       style={{
         height: 74,
+        width: "100%",
         backgroundColor: "#384046",
         borderRadius: 16,
         padding: 8,

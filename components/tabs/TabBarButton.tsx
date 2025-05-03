@@ -42,7 +42,11 @@ const TabBarButton = ({ onPress, onLongPress, isFocused, routeName, label }: Pro
       onLongPress={onLongPress}
       style={[
         styles.tabBarItem,
-        { backgroundColor: isFocused ? "#BBF246" : "transparent", paddingHorizontal: isFocused ? 30 : 0 },
+        {
+          backgroundColor: isFocused ? "#BBF246" : "transparent",
+          paddingHorizontal: isFocused ? 30 : 0,
+          flex: isFocused ? 1 : 1 / 2,
+        },
       ]}
     >
       <Animated.View style={animatedIconStyle}>
@@ -64,7 +68,7 @@ export default TabBarButton;
 
 const styles = StyleSheet.create({
   tabBarItem: {
-    flex: 1,
+    // flex: 1,
     width: "auto",
     flexDirection: "row",
     justifyContent: "center",

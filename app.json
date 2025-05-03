@@ -32,7 +32,16 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
-      ]
+      ],
+      [
+        "expo-maps",
+        {
+          "requestLocationPermission": "true",
+          "locationPermission": "Allow FitFam to use your location"
+        }
+      ],
+      "expo-font",
+      "expo-web-browser"
     ],
     "splash": {
       "image": "./assets/images/favicon.png",

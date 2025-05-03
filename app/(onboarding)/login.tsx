@@ -11,7 +11,7 @@ const Login = () => {
   const { width } = Dimensions.get("window");
 
   const handleGetStarted = () => {
-    router.push("/");
+    router.push("/(tabs)");
   };
 
   return (
